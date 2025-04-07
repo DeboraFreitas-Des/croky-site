@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pedido - Croky Salgados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      margin: 20px;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header img {
+      width: 150px;
+    }
+
+    h1 {
+      color: #d62828;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    select, input[type="text"], input[type="number"], input[type="datetime-local"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .sabores label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .sabores input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .info-preco {
+      background-color: #ffe066;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    #deliveryTax {
+      display: none;
+      background-color: #ffdddd;
+      padding: 10px;
+      border-left: 4px solid red;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #d62828;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a4161a;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="Logo Croky Salgados" />
+   <p style="font-size: 12px; color: #555; font-weight: bold; margin-top: 10px;">
+    Bem-Vindo à <span style="color: #d62828;">Croky Salgados!</span>
+    <br>
+    Ficamos feliz em ter você aqui.
+    <br>
+    <br>
+    Siga nosso Instagram e acompanhe as novidades:
+    <a href="https://www.instagram.com/crokysalgados" target="_blank" style="color: #d62828; text-decoration: none; font-weight: bold;">@croky_salgados
+    </a>
+   </p>
+    <h1>Faça seu Pedido</h1>
+  </header>
+
+  <form id="pedidoForm">
+    <label for="quantity">Quantidade:</label>
+    <select id="quantity" name="quantity">
+      <option value="50">50 (Meio cento)</option>
+      <option value="100">100 (1 cento)</option>
+    </select>
+
+    <label for="customQuantity">Ou digite outra quantidade:</label>
+    <input type="number" id="customQuantity" name="customQuantity" placeholder="Ex: 200 ou 300..." min="200" step="100"/>
+
+    <div class="info-preco">
+      Meio cento: R$19,00 
+      (até 2 sabores)
+      <br/>
+      Um Cento: R$38,00
+      (até 4 sabores)
+    </div>
+
+    <label>Escolha os sabores:</label>
+    <div class="sabores">
+      <label><input type="checkbox" name="sabores" value="Coxinha">Coxinha</label>
+      <label><input type="checkbox" name="sabores" value="Coxinha Nordestina">Coxinha Nordestina <br><i>(carne do sol e queijo coalho)</i></label>
+      <label><input type="checkbox" name="sabores" value="Bolinha de Queijo">Bolinha de Queijo</label>
+      <label><input type="checkbox" name="sabores" value="Risole de Carne">Risole de Carne</label>
+      <label><input type="checkbox" name="sabores" value="Risole Misto">Risole Misto</label>
+      <label><input type="checkbox" name="sabores" value="Risole de Pizza">Risole de Pizza<br><i>(calabresa, mussarela e orégano)</i></label>
+      <label><input type="checkbox" name="sabores" value="Croquete de Frango c/Bacon">Croquete de Frango c/Bacon</label>
+      <label><input type="checkbox" name="sabores" value="Enroladinho">Enroladinho</label>
+    </div>
+    <br>
+    <label for="dataHora">Data e hora da entrega ou retirada:</label>
+    <input type="datetime-local" id="dataHora" name="dataHora" required />
+    <label>Forma de recebimento:</label>
+    <label><input type="radio" name="recebimento" id="retirada" value="Retirada" checked>Retirada</label>
+    <div id="enderecoRetirada">
+        <p><strong>Endereço para retirada:</strong><br>Rua Eurípedes Vasconcelos, 178. </p>
+
+    </div>
+    <label><input type="radio" name="recebimento" id="entrega" value="Entrega">Entrega</label>
+
+    <div id="deliveryTax">
+      Será cobrada uma taxa de delivery de R$6,00
+    </div>
+
+    <div id="enderecoEntrega">
+      <label for="endereco">Endereço para entrega:</label>
+      <textarea id="endereco" name="endereco" rows="3" placeholder="Rua, número, bairro, ponto de referência"></textarea>
+   <div>
+    <label>Forma de pagamento:</label>
+    <label><input type="radio" name="pagamento" value="Pix" checked>Pix</label>
+    <label><input type="radio" name="pagamento" value="Cartão">Cartão (+R$1,00 de taxa)</label>
+    <label><input type="radio" name="pagamento" value="Dinheiro" id="pagamentoDinheiro">Dinheiro</label>
+
+    <div id="trocoContainer" style="display: none; margin-top: 10px;">
+    <label for="troco">Precisa de troco? Se sim, para quanto?</label>
+    <input type="text" id="troco" name="troco" placeholder="Ex: R$50,00" />
+    </div>
+
+   </div>
+    <br>
+    <button type="submit">Enviar Pedido via WhatsApp</button>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const quantity = document.getElementById("quantity");
+      const customQuantity = document.getElementById("customQuantity");
+      const checkboxes = document.querySelectorAll("input[name='sabores']");
+      const entrega = document.getElementById("entrega");
+      const retirada = document.getElementById("retirada");
+      const deliveryTax = document.getElementById("deliveryTax");
+      const endereco = document.getElementById("enderecoEntrega");
+
+      function updateLimit() {
+        let qtd = parseInt(quantity.value);
+        if (customQuantity.value) {
+          qtd = parseInt(customQuantity.value);
+        }
+
+        let maxSabores = 0;
+        if (qtd === 50) maxSabores = 2;
+        else if (qtd === 100) maxSabores = 4;
+        else maxSabores = Math.floor(qtd / 25);
+
+        const checked = Array.from(checkboxes).filter(c => c.checked);
+        checkboxes.forEach(c => c.disabled = false);
+        if (checked.length >= maxSabores) {
+          checkboxes.forEach(c => {
+            if (!c.checked) c.disabled = true;
+          });
+        }
+      }
+
+      quantity.addEventListener("change", () => {
+        customQuantity.value = "";
+        updateLimit();
+      });
+      customQuantity.addEventListener("input", updateLimit);
+      checkboxes.forEach(c => c.addEventListener("change", updateLimit));
+
+      entrega.addEventListener("change", () => {
+        deliveryTax.style.display = "block";
+      });
+      retirada.addEventListener("change", () => {
+        deliveryTax.style.display = "none";
+      });
+
+      document.getElementById("pedidoForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const sabores = Array.from(document.querySelectorAll("input[name='sabores']:checked")).map(el => el.value).join(", ");
+        const qtdFinal = customQuantity.value || quantity.value;
+        const recebimento = document.querySelector("input[name='recebimento']:checked").value;
+        const enderecoFinal = recebimento === "Entrega" ? document.getElementById("endereco").value : "Retirada na loja: Rua Eurípedes Vasconcelos, 178";
+
+        const mensagem = `Olá, quero fazer um pedido na Croky Salgados:
+        Quantidade: ${qtdFinal}
+        Sabores: ${sabores}
+        Data/Hora: ${document.getElementById("dataHora").value}
+        Forma de recebimento: ${recebimento}
+        Endereço: ${enderecoFinal}`;
+
+        const link = "https://wa.me/5585991755739?text=" + encodeURIComponent(mensagem);
+        window.open(link, "_blank");
+      });
+    });
+  </script>
+
+</body>
+</html>
